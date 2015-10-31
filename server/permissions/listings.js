@@ -1,4 +1,4 @@
-Items.allow({
+Listings.allow({
   'insert': function(userId, doc) {
     return userId;
   },

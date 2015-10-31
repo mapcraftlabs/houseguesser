@@ -1,18 +1,18 @@
 <template name="dashboard">
   <div class="template-dashboard">
-    <a class="btn-floating btn-large waves-effect waves-light red lighten-2 right" href="{{pathFor 'items.new'}}"><i class="mdi-content-add"></i></a>
+    <a class="btn-floating btn-large waves-effect waves-light red lighten-2 right" href="{{pathFor 'listings.new'}}"><i class="mdi-content-add"></i></a>
 
-    <h1>Dashboard</h1>
+    <h1>Listings</h1>
 
     <ul class="collection">
-      {{#each items}}
+      {{#each listings}}
         <li class="collection-item avatar">
           <i class="mdi-action-done circle red lighten-2"></i>
-          <span class="title">{{ name }}</span>
-          <p class="truncate">
-            {{ description }}
+          <span class="title">{{ address }} ({{zip}})</span>
+          <p>
+            {{formatNumber askingPrice}}
           </p>
-          <span class="secondary-content"><i class="mdi-action-grade"></i> {{ rating }}</span>
+          <span class="secondary-content"><a href="{{link}}" target="_blank"><i class="fa fa-2x fa-external-link"></i></a></span>
         </li>
       {{/each}}
     </ul>

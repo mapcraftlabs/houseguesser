@@ -6,10 +6,10 @@ Router.route('/dashboard', {
   name: 'dashboard'
 });
 
-Router.route('/items/new', {
-  name: 'items.new'
+Router.route('/listings/new', {
+  name: 'listings.new'
 });
 
-Router.plugin('ensureSignedIn', {
+/*Router.plugin('ensureSignedIn', {
   only: ['dashboard']
-});
+});*/

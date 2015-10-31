@@ -1,0 +1,3 @@
+ListingsNewController = AppController.extend({
+  
+});

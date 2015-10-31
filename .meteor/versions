@@ -25,6 +25,7 @@ ejson@1.0.5
 email@1.0.5
 fastclick@1.0.2
 follower-livedata@1.0.3
+fortawesome:fontawesome@4.4.0
 geojson-utils@1.0.2
 gildaspk:autoform-materialize@0.0.3
 handlebars@1.0.2
@@ -58,6 +59,7 @@ momentjs:moment@2.9.0
 mongo@1.0.11
 mrt:underscore-string-latest@2.3.3
 npm-bcrypt@0.7.7
+numeral:numeral@1.5.3_1
 observe-sequence@1.0.4
 ordered-dict@1.0.2
 random@1.0.2
