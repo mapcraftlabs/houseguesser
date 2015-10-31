@@ -1,16 +1,17 @@
 <template name="dashboard">
   <div class="template-dashboard">
-    <a class="btn-floating btn-large waves-effect waves-light red lighten-2 right" href="{{pathFor 'listings.new'}}"><i class="mdi-content-add"></i></a>
+    <a class="btn-floating btn-large waves-effect waves-light right" href="{{pathFor 'listings.new'}}"><i class="mdi-content-add"></i></a>
 
-    <h1>Listings</h1>
+    <h2>Listings</h2>
 
     <ul class="collection">
       {{#each listings}}
         <li class="collection-item avatar">
-          <i class="mdi-action-done circle red lighten-2"></i>
+          <i class="mdi-action-done deep-orange darken-3 circle"></i>
           <span class="title">{{ address }} ({{zip}})</span>
           <p>
-            {{formatNumber askingPrice}}
+            {{formatNumber askingPrice}}<br>
+            {{numBids}} Bids
           </p>
           <span class="secondary-content"><a href="{{link}}" target="_blank"><i class="fa fa-2x fa-external-link"></i></a></span>
         </li>
