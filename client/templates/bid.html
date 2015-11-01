@@ -1,0 +1,12 @@
+<template name="bid">
+  <li class="collection-item avatar">
+	  <span class="title">{{formatNumber bid }}</span>
+	  <p>
+	  	{{#if comment}}
+	      {{comment}}<br>
+	    {{/if}}
+	    {{createdAt}}<br>
+	    {{createdBy}}
+	  </p>
+	</li>
+</template>

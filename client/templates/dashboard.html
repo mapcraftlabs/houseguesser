@@ -1,6 +1,8 @@
 <template name="dashboard">
   <div class="template-dashboard">
-    <a class="btn-floating btn-large waves-effect waves-light right" href="{{pathFor 'listings.new'}}"><i class="mdi-content-add"></i></a>
+  	{{#if currentUser}}
+      <a class="btn-floating btn-large waves-effect waves-light right" href="{{pathFor 'listings.new'}}"><i class="mdi-content-add"></i></a>
+    {{/if}}
 
     <h2>Listings</h2>
 

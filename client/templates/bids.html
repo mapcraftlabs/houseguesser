@@ -10,16 +10,24 @@
 		  {{/with}}
 	  </ul>
 
-	  <a class="btn-floating btn-large waves-effect waves-light right" href="{{pathFor 'bid.new' _id=listing._id}}"><i class="mdi-content-add"></i></a>
+      {{#if currentUser}}
+	    <a class="btn-floating btn-large waves-effect waves-light right" href="{{pathFor 'bid.new' _id=listing._id}}"><i class="mdi-content-add"></i></a>
+	  {{/if}}
 
 	  <h2>Guesses</h2>
 
     {{#if noBids}}
-      <h4>No guesses have been made, add one using the plus button.</h4>
+      {{#if currentUser}}
+        This listing has no guesses.  Use the 'plus' to make a guess.
+      {{else}}
+         This listing has no guesses. Login to make a guess.      
+      {{/if}}
     {{/if}}
 
+    <ul class="collection">
 	  {{#each bids}}
-	    {{bid}}<br>
+	    {{> bid }}
 	  {{/each}}
+	</ul>
   </div>
 </template>
