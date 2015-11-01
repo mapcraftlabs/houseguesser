@@ -1,3 +1,5 @@
+// LISTINGS
+
 Listings = new Mongo.Collection('listings');
 
 Listings.helpers({
@@ -27,6 +29,40 @@ Listings.attachSchema(new SimpleSchema({
       regEx: /^[0-9]{5}$/
   },
   askingPrice: {
+      type: Number,
+      min: 1000
+   }
+}));
+
+
+// BIDS
+
+Bids = new Mongo.Collection('bids');
+
+Bids.helpers({
+
+});
+
+Bids.before.insert(function (userId, doc) {
+  doc.createdAt = moment().toDate();
+  doc.createdBy = userId;
+});
+
+Bids.attachSchema(new SimpleSchema({
+  comment: {
+    type: String,
+    optional: true,
+    max: 200
+  },
+  listingId: {
+    type: String,
+    max: 50,
+    autoform: { 
+      type: 'hidden',
+      label: false
+    }
+  },
+  bid: {
       type: Number,
       min: 1000
    }

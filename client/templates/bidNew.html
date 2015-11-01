@@ -1,0 +1,7 @@
+<template name="bidNew">
+  <a class="btn-floating btn-large waves-effect waves-light right" href="{{pathFor 'bids' _id=listingId}}"><i class="mdi-navigation-arrow-back"></i></a>
+  <h2>New Guess</h2>
+  <div class="card-panel">
+    {{> quickForm collection="Bids" id="bid-new-form" type="insert"}}
+  </div>
+</template>

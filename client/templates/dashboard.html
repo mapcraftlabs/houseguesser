@@ -6,15 +6,7 @@
 
     <ul class="collection">
       {{#each listings}}
-        <li class="collection-item avatar">
-          <i class="mdi-action-done deep-orange darken-3 circle"></i>
-          <span class="title">{{ address }} ({{zip}})</span>
-          <p>
-            {{formatNumber askingPrice}}<br>
-            {{numBids}} Bids
-          </p>
-          <span class="secondary-content"><a href="{{link}}" target="_blank"><i class="fa fa-2x fa-external-link"></i></a></span>
-        </li>
+        {{> listing }}
       {{/each}}
     </ul>
 

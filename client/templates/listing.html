@@ -1,0 +1,11 @@
+<template name="listing">
+	<li class="collection-item avatar">
+	  <a href="{{pathFor 'bids' _id}}"><i class="mdi-action-done deep-orange darken-3 circle"></i></a>
+	  <span class="title">{{ address }} ({{zip}})</span>
+	  <p>
+	    {{formatNumber askingPrice}}<br>
+	    {{numBids}} Bids
+	  </p>
+	  <span class="secondary-content"><a href="{{link}}" target="_blank"><i class="fa fa-2x fa-external-link"></i></a></span>
+	</li>
+</template>

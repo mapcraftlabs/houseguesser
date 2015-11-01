@@ -1,0 +1,25 @@
+<template name="bids">
+  <div class="template-dashboard">
+  	<a class="btn-floating btn-large waves-effect waves-light right" href="{{pathFor 'dashboard'}}"><i class="mdi-navigation-arrow-back"></i></a>
+
+  	<h2>Listing</h2>
+
+		<ul class="collection">
+		  {{#with listing}}
+			  {{> listing }}
+		  {{/with}}
+	  </ul>
+
+	  <a class="btn-floating btn-large waves-effect waves-light right" href="{{pathFor 'bid.new' _id=listing._id}}"><i class="mdi-content-add"></i></a>
+
+	  <h2>Guesses</h2>
+
+    {{#if noBids}}
+      <h4>No guesses have been made, add one using the plus button.</h4>
+    {{/if}}
+
+	  {{#each bids}}
+	    {{bid}}<br>
+	  {{/each}}
+  </div>
+</template>
