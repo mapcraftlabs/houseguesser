@@ -10,7 +10,10 @@ Router.map(function () {
 
 
 	this.route('/', {
-	  name: 'home'
+	  name: 'home',
+    onAfterAction: function () {
+      Meta.setTitle('Home');
+    }
 	});
 
 
@@ -23,7 +26,7 @@ Router.map(function () {
 	    listings: Listings.find({})
 	  },
 	  onAfterAction: function () {
-	    Meta.setTitle('Dashboard');
+	    Meta.setTitle('Listings');
 	  }
 	});
 
@@ -46,6 +49,9 @@ Router.map(function () {
         listing: Listings.findOne(this.params._id),
         bids: Bids.find({listingId: this.params._id})
       }
+    },
+    onAfterAction: function () {
+      Meta.setTitle('Bids');
     }
   });
 

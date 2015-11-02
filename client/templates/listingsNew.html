@@ -1,6 +1,10 @@
 <template name="listingsNew">
   <a class="btn-floating btn-large waves-effect waves-light right" href="{{pathFor 'dashboard'}}"><i class="mdi-navigation-arrow-back"></i></a>
   <h2>New House Listing</h2>
+
+  In order to not bid multiple times on the same house, we use RedFin links to identify each house.  Enter a valid RedFin house link to bid on a new house (we will confirm it does not already exist).  A RedFin link looks like this:<br><code>https://www.redfin.com/CA/Oakland/350-Lester-Ave-94606/home/1159447</code>.<br><br>
+
+  We will verify the asking price you enter.  There is no point in cheating.  We only ask you to enter this so as not to violate the RedFin terms of use.<br><br>
   <div class="card-panel">
     {{> quickForm collection="Listings" id="listings-new-form" type="insert"}}
   </div>

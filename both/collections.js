@@ -14,24 +14,48 @@ Listings.before.insert(function (userId, doc) {
 Listings.attachSchema(new SimpleSchema({
   address: {
     type: String,
-    max: 200
+    max: 200,
+    autoform: { 
+      type: 'hidden',
+      label: false
+    }
   },
-  link: {
-      type: String,
-      regEx: SimpleSchema.RegEx.Url,
-      autoform: {
-         type: "url"
-      }
+  city: {
+    type: String,
+    max: 200,
+    autoform: { 
+      type: 'hidden',
+      label: false
+    }
+  },
+  state: {
+    type: String,
+    max: 200,
+    autoform: { 
+      type: 'hidden',
+      label: false
+    }
   },
   zip: {
-      type: String,
-      label: "Zip code",
-      regEx: /^[0-9]{5}$/
+    type: String,
+    label: "Zip code",
+    regEx: /^[0-9]{5}$/,
+    autoform: { 
+      type: 'hidden',
+      label: false
+    }
+  },
+  link: {
+    type: String,
+    regEx: SimpleSchema.RegEx.Url,
+    autoform: {
+      type: "url"
+    }
   },
   askingPrice: {
-      type: Number,
-      min: 1000
-   }
+    type: Number,
+    min: 1000
+  }
 }));
 
 

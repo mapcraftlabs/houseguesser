@@ -9,15 +9,23 @@ Meteor.publish("listing", function(id) {
 
 Listings.allow({
   'insert': function(userId, doc) {
+    var l = Listings.findOne({link: doc.link});
+    if(l) {
+      throw new Meteor.Error(404, 
+        "Link already exists -" + l._id + "-");
+    }
     return userId;
   },
-  'update': function(userId, doc, fields, modifier) {
+  /*'update': function(userId, doc, fields, modifier) {
     return userId;
   },
   'remove': function(userId, doc) {
     return userId;
-  }
+  }*/
 });
+
+
+Listings._ensureIndex({ link: 1 });
 
 
 Meteor.methods({
@@ -37,12 +45,12 @@ Bids.allow({
   'insert': function(userId, doc) {
     return userId;
   },
-  'update': function(userId, doc, fields, modifier) {
+  /*'update': function(userId, doc, fields, modifier) {
     return userId;
   },
   'remove': function(userId, doc) {
     return userId;
-  }
+  }*/
 });
 
 
