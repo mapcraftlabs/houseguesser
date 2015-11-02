@@ -37,5 +37,5 @@ random
 ejson
 spacebars
 check
-materialize:materialize
 useraccounts:iron-routing
+poetic:materialize-scss
