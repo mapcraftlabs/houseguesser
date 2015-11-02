@@ -38,5 +38,5 @@ ejson
 spacebars
 check
 useraccounts:iron-routing
-poetic:materialize-scss@=1.2.3
-fourseven:scss@=3.2.0
+poetic:materialize-scss
+fourseven:scss
