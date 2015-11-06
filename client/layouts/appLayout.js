@@ -3,6 +3,7 @@ Meteor.startup(function() {
 
   $('body').on('click', '[data-action=logout]', function(event) {
     event.preventDefault();
-    AccountsTemplates.logout();
+    Materialize.toast("Logged out successfully", 4000);
+    Meteor.logout();
   });
 });

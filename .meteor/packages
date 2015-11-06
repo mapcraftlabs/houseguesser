@@ -3,9 +3,7 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
-accounts-password
 alanning:roles
-zimme:iron-router-active
 cmather:handlebars-server
 dburles:collection-helpers
 reywood:publish-composite
@@ -17,7 +15,6 @@ anti:fake
 cunneen:mailgun
 iron:router
 yasinuslu:blaze-meta
-useraccounts:materialize
 aldeed:autoform
 aldeed:collection2
 gildaspk:autoform-materialize
@@ -37,6 +34,8 @@ random
 ejson
 spacebars
 check
-useraccounts:iron-routing
 poetic:materialize-scss
 fourseven:scss
+zimme:active-route
+accounts-google
+service-configuration

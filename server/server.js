@@ -15,13 +15,7 @@ Listings.allow({
         "Link already exists -" + l._id + "-");
     }
     return userId;
-  },
-  /*'update': function(userId, doc, fields, modifier) {
-    return userId;
-  },
-  'remove': function(userId, doc) {
-    return userId;
-  }*/
+  }
 });
 
 
@@ -35,27 +29,65 @@ Meteor.methods({
 });
 
 
-Meteor.publish("bids", function (id) {
-  // find bids for a specific listingId
-  return Bids.find({listingId: id});
+Meteor.publishComposite('bids', function(id) {
+  return {
+    find: function() {
+      return Bids.find({listingId: id});
+    },
+    children: [{
+      find: function(bid) {
+        return Meteor.users.find({
+          _id: bid.createdBy
+        },{
+          limit: 1, 
+          fields: {
+            "profile.name": 1, 
+            "services.google.picture": 1 
+          } 
+        });
+      }
+    }]
+  }
 });
 
 
 Bids.allow({
   'insert': function(userId, doc) {
     return userId;
-  },
-  /*'update': function(userId, doc, fields, modifier) {
-    return userId;
-  },
-  'remove': function(userId, doc) {
-    return userId;
-  }*/
+  }
 });
 
 
 Meteor.methods({
   'Bids.insert': function (params) {
+    console.log(params);
     Bids.insert(params);
+  }
+});
+
+
+Bids.after.insert(function (userId, doc) {
+  Listings.update(doc.listingId, {$inc: {numBids: 1}});
+});
+
+
+Meteor.publish("userData", function (_id) {
+  if(_id) {
+    Meteor.users.find({_id: _id}, {fields: {profile: 1}});
+  }
+  return Meteor.users.find({_id: this.userId});
+});
+
+
+Meteor.startup(function() {
+  if (ServiceConfiguration.configurations.find(
+    {service: 'google'}).count() == 0) {
+
+    ServiceConfiguration.configurations.insert({
+      service: "google",
+      clientId: Meteor.settings.googleClientId,
+      loginStyle: "popup",
+      secret: Meteor.settings.googleSecret
+    });
   }
 });

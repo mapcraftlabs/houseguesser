@@ -16,8 +16,9 @@ var parse_url = function (url) {
   }
   var address = addressTokens.slice(0, -1).join(' ');
   return {
-  	state: tokens[2],
-  	city: tokens[3],
+    numBids: 0,
+  	state: tokens[3],
+  	city: tokens[4],
   	address: address,
   	zip: zip
   }
@@ -42,7 +43,15 @@ AutoForm.hooks({
       }
     },
     onError: function(operation, error) {
-      console.log(error);
+
+      if(!error.reason ||
+          error.reason.indexOf("Link already exists") != -1) {
+
+        console.log(error);
+        Materialize.toast("Error creating listing");
+        return;
+      }
+
       var id = error.message.split("-")[1];
       Materialize.toast('Listing already exists, forwarding to listing.', 4000);
       Router.go('bids', {_id: $.trim(id)});

@@ -55,6 +55,14 @@ Listings.attachSchema(new SimpleSchema({
   askingPrice: {
     type: Number,
     min: 1000
+  },
+  numBids: {
+    type: Number,
+    min: 0,
+    autoform: { 
+      type: 'hidden',
+      label: false
+    }
   }
 }));
 

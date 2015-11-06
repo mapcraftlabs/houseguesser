@@ -1,11 +1,16 @@
 <template name="listing">
 	<li class="collection-item avatar">
-	  <a href="{{pathFor 'bids' _id}}"><i class="mdi-action-done deep-orange darken-3 circle"></i></a>
-	  <span class="title">{{ address }} ({{zip}})</span>
+	  {{#if listingPage}}
+	  <a href="{{pathFor 'bids' _id}}"><i class="mdi-action-trending-up deep-orange darken-3 circle"></i></a>
+	  {{/if}}
+	  <span class="title"><a href="{{link}}" target="_blank">{{ address}} - {{city}}, {{state}} {{zip}}</a></span>
 	  <p>
 	    {{formatNumber askingPrice}}<br>
-	    {{numBids}} Bids
+	    {{#if oneBid}}
+	      1 Guess
+	    {{else}}
+	      {{numBids}} Guesses
+	    {{/if}}
 	  </p>
-	  <span class="secondary-content"><a href="{{link}}" target="_blank"><i class="fa fa-2x fa-external-link"></i></a></span>
 	</li>
 </template>

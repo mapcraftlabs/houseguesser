@@ -19,3 +19,25 @@ Template._header.rendered = function() {
 
   }.bind(this), 200);
 };
+
+
+Template._header.events({
+
+  'click .login': function () {
+
+    Meteor.loginWithGoogle({
+
+      requestPermissions: ['profile', 'email'],
+      loginStyle: "popup"
+
+    }, function(err) {
+
+      if (err) {
+        console.log("error");
+        Materialize.toast("Login failed", 4000);
+      } else {
+        Materialize.toast("Login successful", 4000);
+      }
+    });
+  }
+});

@@ -22,12 +22,13 @@
       {{else}}
          This listing has no guesses. Login to make a guess.      
       {{/if}}
+    {{else}}  
+      <ul class="collection">
+  	  {{#each bids}}
+  	    {{> bid }}
+  	  {{/each}}
+      </ul>
     {{/if}}
-
-    <ul class="collection">
-	  {{#each bids}}
-	    {{> bid }}
-	  {{/each}}
-	</ul>
+	
   </div>
 </template>
