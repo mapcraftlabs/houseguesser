@@ -16,7 +16,7 @@ AutoForm.hooks({
           error.reason.indexOf("Can only bid once") == -1) {
 
         console.log(error);
-        Materialize.toast("Error creating bid");
+        Materialize.toast("Error creating bid", 4000);
         return;
       }
 
