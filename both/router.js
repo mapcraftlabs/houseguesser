@@ -9,35 +9,35 @@ Router.plugin('dataNotFound', {dataNotFoundTemplate: 'notFound'});
 Router.map(function () {
 
 
-	this.route('/', {
-	  name: 'home',
+  this.route('/', {
+    name: 'home',
     onAfterAction: function () {
       Meta.setTitle('Home');
     }
-	});
+  });
 
 
-	this.route('/dashboard', {
-	  name: 'dashboard',
-	  waitOn: function() {
-	    return this.subscribe('listings');
-	  },
-	  data: {
-	    listings: Listings.find({})
-	  },
-	  onAfterAction: function () {
-	    Meta.setTitle('Listings');
-	  }
-	});
+  this.route('/dashboard', {
+    name: 'dashboard',
+    waitOn: function() {
+      return this.subscribe('listings');
+    },
+    data: {
+      listings: Listings.find({})
+    },
+    onAfterAction: function () {
+      Meta.setTitle('Listings');
+    }
+  });
 
 
-	this.route('/listings/new', {
-	  name: 'listings.new'
-	});
+  this.route('/listings/new', {
+    name: 'listings.new'
+  });
 
 
-	this.route('bids', {
-	  path: '/bids/:_id',
+  this.route('bids', {
+    path: '/bids/:_id',
     waitOn: function () {
       return [
         this.subscribe('listing', this.params._id),
@@ -57,12 +57,12 @@ Router.map(function () {
 
 
   this.route('/bid/new', {
-  	name: 'bid.new',
+    name: 'bid.new',
     path: '/bid/new/:_id',
     data: function () {
-    	return {
-    		listingId: this.params._id
-    	}
+      return {
+    	listingId: this.params._id
+      }
     }
   });
 });
