@@ -2,6 +2,7 @@ Meteor.publish("listings", function() {
   return Listings.find({});
 });
 
+
 Meteor.publish("listing", function(id) {
   return Listings.find({_id: id});
 });
@@ -68,14 +69,6 @@ Meteor.methods({
 
 Bids.after.insert(function (userId, doc) {
   Listings.update(doc.listingId, {$inc: {numBids: 1}});
-});
-
-
-Meteor.publish("userData", function (_id) {
-  if(_id) {
-    Meteor.users.find({_id: _id}, {fields: {profile: 1}});
-  }
-  return Meteor.users.find({_id: this.userId});
 });
 
 
