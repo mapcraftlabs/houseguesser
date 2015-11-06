@@ -54,6 +54,14 @@ Meteor.publishComposite('bids', function(id) {
 
 Bids.allow({
   'insert': function(userId, doc) {
+    var l = Bids.findOne({
+      createdBy: userId,
+      listingId: doc.listingId
+    });
+    if(l) {
+      throw new Meteor.Error(404, 
+        "Can only bid once");
+    }
     return userId;
   }
 });
@@ -61,7 +69,6 @@ Bids.allow({
 
 Meteor.methods({
   'Bids.insert': function (params) {
-    console.log(params);
     Bids.insert(params);
   }
 });
