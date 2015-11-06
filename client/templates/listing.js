@@ -9,3 +9,11 @@ Template.listing.helpers({
   	return ActiveRoute.name('dashboard');
   }
 });
+
+
+Template.listing.events({
+
+  'click .view-bid': function () {
+     Router.go('bids', {_id: this._id});
+  }
+});

@@ -1,16 +1,33 @@
 <template name="listing">
 	<li class="collection-item avatar">
-	  {{#if listingPage}}
-	  <a href="{{pathFor 'bids' _id}}"><i class="mdi-action-trending-up deep-orange darken-3 circle"></i></a>
-	  {{/if}}
-	  <span class="title"><a href="{{link}}" target="_blank">{{ address}} - {{city}}, {{state}} {{zip}}</a></span>
-	  <p>
+	  <a href="{{link}}" target="_blank"><i class="material-icons deep-orange darken-3 circle">open_in_new</i></a>
+    {{#if listingPage}}
+	    <span class="title"><a href="{{pathFor 'bids' _id}}">{{ address}} - {{city}}, {{state}} {{zip}}</a></span>
+    {{else}}
+      <span class="title">{{ address}} - {{city}}, {{state}} {{zip}}</span>
+    {{/if}}
+	  <p>	  	
 	    {{formatNumber askingPrice}}<br>
-	    {{#if oneBid}}
-	      1 Guess
-	    {{else}}
-	      {{numBids}} Guesses
-	    {{/if}}
+
+	    {{#if listingPage}}
+	      <a href="{{pathFor 'bids' _id}}">
+  	    {{#if oneBid}}
+  	      1 Guess
+  	    {{else}}
+  	      {{numBids}} Guesses
+  	    {{/if}}
+        </a>
+      {{else}}
+        {{#if oneBid}}
+          1 Guess
+        {{else}}
+          {{numBids}} Guesses
+        {{/if}}
+      {{/if}}
+
 	  </p>
+	  {{#if listingPage}}
+	    <a href="{{pathFor 'bids' _id}}" class="secondary-content"><i class="material-icons">visibility</i></a>
+	  {{/if}}
 	</li>
 </template>
