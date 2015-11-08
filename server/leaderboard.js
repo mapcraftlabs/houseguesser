@@ -104,7 +104,7 @@ Leaderboard = {
     _.each(bids, function (bid) {
       if(!bid) return;
       // for now let's just do the median pct difference
-      scores.push(Math.abs(bid.price - bid.bid) / bid.price);
+      scores.push(1.0 - Math.abs(bid.price - bid.bid) / bid.price);
     });
 
     var sum = 0;

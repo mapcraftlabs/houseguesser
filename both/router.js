@@ -34,23 +34,35 @@ Router.map(function () {
           {sort: {numBids: -1}})
       }
     },
+    onAfterAction: function () {
+      Meta.setTitle('Popular');
+    }
   });
+
+  var makeFilter = function (p) { 
+      var filt = {};
+      if(p.geog != "all")
+          filt[p.geog] = p.geogId;
+
+      // put this here just to get in all valid places
+      Session.set('geog', p.geog);
+      Session.set('geogId', p.geogId);
+
+      return filt;
+  }
 
 
   this.route('/listings/:geog/:geogId', {
     name: 'listings',
     waitOn: function() {
-      var filt = {};
-      filt[this.params.geog] = this.params.geogId;
-      return this.subscribe('listings', filt);
+      return this.subscribe('listings', makeFilter(this.params));
     },
     data: function () {
-      var filt = {};
-      filt[this.params.geog] = this.params.geogId;
       return {
         geog: this.params.geog,
         geogId: this.params.geogId,
-        listings: Listings.find(filt)
+        listings: Listings.find(makeFilter(this.params),
+          {sort: {createdAt: -1}})
       }
     },
     onAfterAction: function () {
@@ -62,17 +74,13 @@ Router.map(function () {
   this.route('/leaderboard/:geog/:geogId', {
     name: 'leaderboard',
     waitOn: function() {
-      var filt = {};
-      filt[this.params.geog] = this.params.geogId;
-      return this.subscribe('bidIndex', filt);
+      return this.subscribe('bidIndex', makeFilter(this.params));
     },
     data: function () {
-      var filt = {};
-      filt[this.params.geog] = this.params.geogId;
       return {
         geog: this.params.geog,
         geogId: this.params.geogId,
-        leaders: BidIndex.find(filt)
+        leaders: BidIndex.find(makeFilter(this.params))
       }
     },
     onAfterAction: function () {

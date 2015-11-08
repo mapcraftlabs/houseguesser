@@ -1,13 +1,21 @@
 <template name="leaderboard">
 
-  <h2>{{geogId}} Leaderboard</h2>
+  <a class="btn-floating btn-large waves-effect waves-light right" href="{{pathFor 'popularity'}}"><i class="mdi-navigation-arrow-back"></i></a>
+
+  {{#unless allRoute}}
+    <h2>{{geogId}} Leaderboard</h2>
+  {{else}}
+    <h2>Universal Leaderboard</h2>
+  {{/unless}}
 
   <ul class="collection">
     {{#each leaders}}
-
       {{> leader }}
-
     {{/each}}
   </ul>
+
+  {{#unless allRoute}}
+    <a href="{{pathFor 'listings' geog=geog geogId=geogId}}">{{geogId}} Listings</a>
+  {{/unless}}
 
 </template>

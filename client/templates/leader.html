@@ -4,7 +4,18 @@
     <span class="title">{{userName}}</span>
     <p>
       Score: {{{scores.averagePctDiff}}}<br>
-      # Bids: {{scores.numBids}}
+      # Bids: {{scores.numBids}}<br>
+      {{#if allRoute}}
+        {{#if city}}
+          City: {{city}}
+        {{/if}}
+        {{#if state}}
+          State: {{state}}
+        {{/if}}
+        {{#if zip}}
+          ZIP: {{zip}}
+        {{/if}}
+      {{/if}}
     </p>
   </li>
 </template>

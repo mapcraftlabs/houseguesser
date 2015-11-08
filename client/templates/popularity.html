@@ -4,8 +4,8 @@
   {{#each cities}}
     <h4>
       {{city}}: {{pluralize numBids 'listing'}}
-      <a href="{{pathFor 'listings' geog='city' geogId=city}}">listings</a>
-      <a href="{{pathFor 'leaderboard' geog='city' geogId=city}}">leaderboard</a>
+      <a href="{{ pathFor 'listings' geog='city' geogId=city}}" title="Listings"><i class="mdi-action-dashboard"></i></a>
+      <a href="{{ pathFor 'leaderboard' geog='city' geogId=city}}" title="Leaderboard"><i class="mdi-action-dashboard"></i></a>
     </h4>
   {{/each}}
 
@@ -13,8 +13,8 @@
   {{#each states}}
     <h4>
       {{state}}: {{pluralize numBids 'listing'}}
-      <a href="{{pathFor 'listings' geog='state' geogId=state}}">listings</a>
-      <a href="{{pathFor 'leaderboard' geog='state' geogId=state}}">leaderboard</a>
+      <a href="{{ pathFor 'listings' geog='state' geogId=state}}" title="Listings"><i class="mdi-action-dashboard"></i></a>
+      <a href="{{ pathFor 'leaderboard' geog='state' geogId=state}}" title="Leaderboard"><i class="mdi-action-dashboard"></i></a>
     </h4>
   {{/each}}
 
@@ -22,8 +22,8 @@
   {{#each zips}}
     <h4>
       {{zip}}: {{pluralize numBids 'listing'}}
-      <a href="{{pathFor 'listings' geog='zip' geogId=zip}}">listings</a>
-      <a href="{{pathFor 'leaderboard' geog='zip' geogId=zip}}">leaderboard</a>
+            <a href="{{ pathFor 'listings' geog='zip' geogId=zip}}" title="Listings"><i class="mdi-action-dashboard"></i></a>
+      <a href="{{ pathFor 'leaderboard' geog='zip' geogId=zip}}" title="Leaderboard"><i class="mdi-action-dashboard"></i></a>
     </h4>
   {{/each}}
 </template>

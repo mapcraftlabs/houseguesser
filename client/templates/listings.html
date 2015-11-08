@@ -1,16 +1,27 @@
 <template name="listings">
   <div>
+
   	{{#if currentUser}}
       <a class="btn-floating btn-large waves-effect waves-light right" href="{{pathFor 'listings.new'}}"><i class="mdi-content-add"></i></a>
+    {{else}}
+      <a class="btn-floating btn-large waves-effect waves-light right" href="{{pathFor 'popularity'}}"><i class="mdi-navigation-arrow-back"></i></a>
     {{/if}}
 
-    <h2>{{geogId}} Listings</h2>
+    {{#unless allRoute}}
+      <h2>{{geogId}} Listings</h2>
+    {{else}}
+      <h2>All Recent Listings</h2>
+    {{/unless}}
 
     <ul class="collection">
       {{#each listings}}
         {{> listing }}
       {{/each}}
     </ul>
+
+    {{#unless allRoute}}
+      <a href="{{pathFor 'leaderboard' geog=geog geogId=geogId}}">{{geogId}} Leaderboard</a>
+    {{/unless}}
 
   </div>
 </template>

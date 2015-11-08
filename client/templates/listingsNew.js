@@ -1,3 +1,12 @@
+Template.listingsNew.helpers({
+  geog: function () {
+    return Session.get('geog');
+  },
+  geogId: function () {
+    return Session.get('geogId');
+  }
+})
+
 var parse_url = function (url) {
   if(url.indexOf("redfin.com") < 0) {
      // not a redfin link
