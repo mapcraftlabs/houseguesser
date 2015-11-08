@@ -26,6 +26,10 @@ Listings._ensureIndex({ link: 1 });
 Meteor.methods({
   'Listings.insert': function (params) {
     Listings.insert(params);
+  },
+  'updateSalesPrice': function (_id, salesPrice) {
+    Listings.update({_id: _id}, {$set: {salesPrice: salesPrice}});
+    Leaderboard.updateListing(_id);
   }
 });
 
@@ -80,6 +84,11 @@ Bids.after.insert(function (userId, doc) {
 
 
 Meteor.startup(function() {
+
+  console.log('indexingBids...');
+  Leaderboard.updateAllListings();
+  console.log('doneIndexingBids...');
+
   if (ServiceConfiguration.configurations.find(
     {service: 'google'}).count() == 0) {
 
@@ -91,3 +100,6 @@ Meteor.startup(function() {
     });
   }
 });
+
+
+Bids._ensureIndex({ listingId: 1 });

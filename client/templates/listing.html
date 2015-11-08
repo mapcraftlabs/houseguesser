@@ -9,6 +9,10 @@
 	  <p>	  	
 	    Ask: {{formatNumber askingPrice}}<br>
 
+      {{#if salesPrice}}
+      Sold: {{formatNumber salesPrice}}<br>
+      {{/if}}
+
 	    {{#if listingPage}}
 	      <a href="{{pathFor 'bids' _id}}">
   	    {{#if oneBid}}
@@ -28,6 +32,12 @@
 	  </p>
 	  {{#if listingPage}}
 	    <a href="{{pathFor 'bids' _id}}" class="secondary-content"><i class="material-icons">visibility</i></a>
+    {{else}}
+      {{#if salesPrice}}
+        <a href="#" class="secondary-content mark-unsold">Mark unsold</a>
+      {{else}}
+        <a href="#" class="secondary-content mark-sold">Mark sold</a>
+      {{/if}}
 	  {{/if}}
 	</li>
 </template>

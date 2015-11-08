@@ -14,6 +14,14 @@ Template.listing.helpers({
 Template.listing.events({
 
   'click .view-bid': function () {
-     Router.go('bids', {_id: this._id});
+    Router.go('bids', {_id: this._id});
+  },
+
+  'click .mark-sold': function () {
+    Meteor.call('updateSalesPrice', this._id, 700000);
+  },
+
+  'click .mark-unsold': function () {
+    Meteor.call('updateSalesPrice', this._id, undefined);
   }
 });

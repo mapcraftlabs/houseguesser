@@ -56,6 +56,11 @@ Listings.attachSchema(new SimpleSchema({
     type: Number,
     min: 1000
   },
+  salesPrice: {
+    type: Number,
+    optional: true,
+    min: 1000
+  },
   numBids: {
     type: Number,
     min: 0,
