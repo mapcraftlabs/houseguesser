@@ -1,5 +1,10 @@
-Meteor.publish("listings", function() {
-  return Listings.find({});
+Meteor.publish("listingCounts", function() {
+  return ListingCounts.find({});
+});
+
+
+Meteor.publish("listings", function(filter) {
+  return Listings.find(filter);
 });
 
 
@@ -31,6 +36,13 @@ Meteor.methods({
     Listings.update({_id: _id}, {$set: {salesPrice: salesPrice}});
     Leaderboard.updateListing(_id);
   }
+});
+
+
+Listings.after.insert(function (userId, l) {
+  ListingCounts.upsert({zip: l.zip}, {$inc: {numBids: 1}});
+  ListingCounts.upsert({city: l.city}, {$inc: {numBids: 1}});
+  ListingCounts.upsert({state: l.state}, {$inc: {numBids: 1}});
 });
 
 
@@ -80,6 +92,7 @@ Meteor.methods({
 
 Bids.after.insert(function (userId, doc) {
   Listings.update(doc.listingId, {$inc: {numBids: 1}});
+  var l = Listings.findOne(doc.listingId);
 });
 
 

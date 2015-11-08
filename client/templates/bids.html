@@ -1,6 +1,8 @@
 <template name="bids">
   <div>
+    {{#if 0}}
   	<a class="btn-floating btn-large waves-effect waves-light right" href="{{pathFor 'listings'}}"><i class="mdi-navigation-arrow-back"></i></a>
+    {{/if}}
 
   	<h2>Listing</h2>
 
@@ -10,9 +12,11 @@
 		  {{/with}}
 	  </ul>
 
+    {{#unless listing.salesPrice}}
       {{#if currentUser}}
-	    <a class="btn-floating btn-large waves-effect waves-light right" href="{{pathFor 'bid.new' _id=listing._id}}"><i class="mdi-content-add"></i></a>
-	  {{/if}}
+  	    <a class="btn-floating btn-large waves-effect waves-light right" href="{{pathFor 'bid.new' _id=listing._id}}"><i class="mdi-content-add"></i></a>
+  	  {{/if}}
+    {{/unless}}
 
 	  <h2>Guesses</h2>
 

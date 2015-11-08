@@ -1,0 +1,29 @@
+<template name="popularity">
+
+  <h3>Popular Cities</h3>
+  {{#each cities}}
+    <h4>
+      {{city}}: {{pluralize numBids 'listing'}}
+      <a href="{{pathFor 'listings' geog='city' geogId=city}}">listings</a>
+      <a href="{{pathFor 'leaderboard' geog='city' geogId=city}}">leaderboard</a>
+    </h4>
+  {{/each}}
+
+  <h3>Popular States</h3>
+  {{#each states}}
+    <h4>
+      {{state}}: {{pluralize numBids 'listing'}}
+      <a href="{{pathFor 'listings' geog='state' geogId=state}}">listings</a>
+      <a href="{{pathFor 'leaderboard' geog='state' geogId=state}}">leaderboard</a>
+    </h4>
+  {{/each}}
+
+  <h3>Popular Zips</h3>
+  {{#each zips}}
+    <h4>
+      {{zip}}: {{pluralize numBids 'listing'}}
+      <a href="{{pathFor 'listings' geog='zip' geogId=zip}}">listings</a>
+      <a href="{{pathFor 'leaderboard' geog='zip' geogId=zip}}">leaderboard</a>
+    </h4>
+  {{/each}}
+</template>

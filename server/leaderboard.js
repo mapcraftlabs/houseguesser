@@ -2,9 +2,27 @@
 // usually for some geography, like a zip or city, and eventually
 // for a set of users irregardless of geography
 
-Meteor.publish('bidIndex', function (filter) {
-  return BidIndex.find(filter);
-})
+Meteor.publishComposite('bidIndex', function(filter) {
+  return {
+    find: function() {
+      return BidIndex.find(filter);
+    },
+    children: [{
+      find: function(bid) {
+        return Meteor.users.find({
+          _id: bid.userId
+        },{
+          limit: 1, 
+          fields: {
+            "profile.name": 1, 
+            "services.google.picture": 1 
+          } 
+        });
+      }
+    }]
+  }
+});
+
 
 BidIndex._ensureIndex({ user: 1, zip: 1, city: 1, 
   'scores.numBids': 1, 'scores.averagePctDiff': 1 });

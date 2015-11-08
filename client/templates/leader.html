@@ -1,18 +1,10 @@
 <template name="leader">
   <li class="collection-item avatar">
       <img src="{{profilePic}}" class="circle">
-    <span class="title">Score: {{{scores.averagePctDiff}}}</span>
-    <p>     
-      # Bids: {{scores.numBids}}<br>
-      {{#if state}}
-        State: {{state}}<br>
-      {{/if}}
-      {{#if city}}
-        City: {{city}}<br>
-      {{/if}}
-      {{#if zip}}
-        Zip: {{zip}}<br>
-      {{/if}}
+    <span class="title">{{userName}}</span>
+    <p>
+      Score: {{{scores.averagePctDiff}}}<br>
+      # Bids: {{scores.numBids}}
     </p>
   </li>
 </template>

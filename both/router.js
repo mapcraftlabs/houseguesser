@@ -17,24 +17,44 @@ Router.map(function () {
   });
 
 
-  this.route('/listings', {
-    name: 'listings',
+  this.route('/popularity', {
+    name: 'popularity',
     waitOn: function() {
-      return this.subscribe('listings');
+      return [
+        this.subscribe('listingCounts')
+      ]
     },
-    data: {
-      listings: Listings.find({})
+    data: function () {
+      return {
+        zips: ListingCounts.find({zip: {$ne: null}},
+          {sort: {numBids: -1}}),
+        cities: ListingCounts.find({city: {$ne: null}},
+          {sort: {numBids: -1}}),
+        states: ListingCounts.find({state: {$ne: null}},
+          {sort: {numBids: -1}})
+      }
     },
-    onAfterAction: function () {
-      Meta.setTitle('Listings');
-    }
   });
 
 
-  this.route('/leaderboards', {
-    name: 'leaderboards',
+  this.route('/listings/:geog/:geogId', {
+    name: 'listings',
+    waitOn: function() {
+      var filt = {};
+      filt[this.params.geog] = this.params.geogId;
+      return this.subscribe('listings', filt);
+    },
+    data: function () {
+      var filt = {};
+      filt[this.params.geog] = this.params.geogId;
+      return {
+        geog: this.params.geog,
+        geogId: this.params.geogId,
+        listings: Listings.find(filt)
+      }
+    },
     onAfterAction: function () {
-      Router.go('leaderboard', {geog: 'city', geogId: 'Oakland'});
+      Meta.setTitle('Listings');
     }
   });
 
@@ -50,6 +70,8 @@ Router.map(function () {
       var filt = {};
       filt[this.params.geog] = this.params.geogId;
       return {
+        geog: this.params.geog,
+        geogId: this.params.geogId,
         leaders: BidIndex.find(filt)
       }
     },

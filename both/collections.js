@@ -59,7 +59,11 @@ Listings.attachSchema(new SimpleSchema({
   salesPrice: {
     type: Number,
     optional: true,
-    min: 1000
+    min: 1000,
+    autoform: { 
+      type: 'hidden',
+      label: false
+    }
   },
   numBids: {
     type: Number,
@@ -109,3 +113,4 @@ Bids.attachSchema(new SimpleSchema({
 // Index for leaderboards
 
 BidIndex = new Mongo.Collection('bidIndex');
+ListingCounts = new Mongo.Collection('listingCounts');
