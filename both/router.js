@@ -17,8 +17,8 @@ Router.map(function () {
   });
 
 
-  this.route('/dashboard', {
-    name: 'dashboard',
+  this.route('/listings', {
+    name: 'listings',
     waitOn: function() {
       return this.subscribe('listings');
     },
@@ -27,6 +27,34 @@ Router.map(function () {
     },
     onAfterAction: function () {
       Meta.setTitle('Listings');
+    }
+  });
+
+
+  this.route('/leaderboards', {
+    name: 'leaderboards',
+    onAfterAction: function () {
+      Router.go('leaderboard', {geog: 'city', geogId: 'Oakland'});
+    }
+  });
+
+
+  this.route('/leaderboard/:geog/:geogId', {
+    name: 'leaderboard',
+    waitOn: function() {
+      var filt = {};
+      filt[this.params.geog] = this.params.geogId;
+      return this.subscribe('bidIndex', filt);
+    },
+    data: function () {
+      var filt = {};
+      filt[this.params.geog] = this.params.geogId;
+      return {
+        leaders: BidIndex.find(filt)
+      }
+    },
+    onAfterAction: function () {
+      Meta.setTitle('Leaderboard');
     }
   });
 

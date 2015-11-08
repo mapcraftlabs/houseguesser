@@ -104,3 +104,8 @@ Bids.attachSchema(new SimpleSchema({
       min: 1000
    }
 }));
+
+
+// Index for leaderboards
+
+BidIndex = new Mongo.Collection('bidIndex');

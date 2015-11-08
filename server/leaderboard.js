@@ -2,7 +2,9 @@
 // usually for some geography, like a zip or city, and eventually
 // for a set of users irregardless of geography
 
-BidIndex = new Mongo.Collection('bidIndex');
+Meteor.publish('bidIndex', function (filter) {
+  return BidIndex.find(filter);
+})
 
 BidIndex._ensureIndex({ user: 1, zip: 1, city: 1, 
   'scores.numBids': 1, 'scores.averagePctDiff': 1 });

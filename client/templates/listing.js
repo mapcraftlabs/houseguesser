@@ -6,7 +6,7 @@ Template.listing.helpers({
   	return this.numBids || 0;
   },
   listingPage: function () {
-  	return ActiveRoute.name('dashboard');
+  	return ActiveRoute.name('listings');
   }
 });
 
