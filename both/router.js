@@ -74,7 +74,13 @@ Router.map(function () {
   this.route('/leaderboard/:geog/:geogId', {
     name: 'leaderboard',
     waitOn: function() {
-      return this.subscribe('bidIndex', makeFilter(this.params));
+      var filt = {
+        $and: [
+          makeFilter(this.params),
+          {'scores.numBids': {$gt: 0}}
+        ]
+      };
+      return this.subscribe('bidIndex', filt);
     },
     data: function () {
       return {

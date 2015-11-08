@@ -18,7 +18,21 @@ Template.listing.events({
   },
 
   'click .mark-sold': function () {
-    Meteor.call('updateSalesPrice', this._id, 700000);
+    var myId = this._id;
+    MaterializeModal.prompt({
+      title: "Mark as Sold",
+      message: "Please enter the sales price",
+      placeholder: "e.g. 250000",
+      submitLabel: "Save Price",
+      callback: function(error, response) {
+        if (response.submit) {
+          Meteor.call('updateSalesPrice', myId, response.value);
+          Materialize.toast("The house is sold!", 4000, "green");
+        } else {
+          Materialize.toast("Cancelled by user!", 4000, "red");
+        }
+      }
+    });
   },
 
   'click .mark-unsold': function () {

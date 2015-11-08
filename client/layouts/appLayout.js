@@ -3,7 +3,7 @@ Meteor.startup(function() {
 
   $('body').on('click', '[data-action=logout]', function(event) {
     event.preventDefault();
-    Materialize.toast("Logged out successfully", 4000);
+    Materialize.toast("Logged out successfully", 4000, "green");
     Meteor.logout();
   });
 });

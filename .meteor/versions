@@ -63,6 +63,7 @@ logging@1.0.8
 matb33:collection-hooks@0.8.1
 meteor@1.1.10
 meteor-base@1.0.1
+meteorstuff:materialize-modal@1.0.4
 minifiers@1.1.7
 minimongo@1.0.10
 mobile-experience@1.0.1
@@ -89,6 +90,7 @@ reywood:publish-composite@1.4.2
 routepolicy@1.0.6
 service-configuration@1.0.5
 session@1.1.1
+softwarerero:accounts-t9n@1.1.4
 spacebars@1.0.7
 spacebars-compiler@1.0.7
 standard-minifiers@1.0.2

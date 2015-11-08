@@ -34,9 +34,9 @@ Template._header.events({
 
       if (err) {
         console.log("error");
-        Materialize.toast("Login failed", 4000);
+        Materialize.toast("Login failed", 4000, "red");
       } else {
-        Materialize.toast("Login successful", 4000);
+        Materialize.toast("Login successful", 4000, "green");
       }
     });
   }

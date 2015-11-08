@@ -10,8 +10,8 @@
 
         <ul class="right hide-on-med-and-down">
           <li class="{{ isActiveRoute regex='home' }}"><a href="{{ pathFor 'home' }}" title="Home"><i class="mdi-action-home"></i></a></li>
-          <li class="{{ isActiveRoute regex='popularity' }}"><a href="{{ pathFor 'popularity' }}" title="Popular Places"><i class="mdi-action-dashboard"></i></a></li>
-          <li class="{{ isActiveRoute regex='listings' }}"><a href="{{ pathFor 'listings' geog='all' geogId='all'}}" title="Listings"><i class="mdi-action-dashboard"></i></a></li>
+          <li class="{{ isActiveRoute regex='popularity' }}"><a href="{{ pathFor 'popularity' }}" title="Popular Places"><i class="mdi-action-thumb-up"></i></a></li>
+          <li class="{{ isActiveRoute regex='listings' }}"><a href="{{ pathFor 'listings' geog='all' geogId='all'}}" title="Listings"><i class="mdi-action-view-headline"></i></a></li>
           <li class="{{ isActiveRoute regex='leaderboard' }}"><a href="{{ pathFor 'leaderboard' geog='all' geogId='all'}}" title="Listings"><i class="mdi-action-dashboard"></i></a></li>
         </ul>
 
@@ -30,8 +30,8 @@
 
   <ul id="nav-mobile" class="side-nav">
     <li><a href="{{ pathFor 'home' }}" title="Home"><i class="mdi-action-home"></i> Home</a></li>
-    <li><a href="{{ pathFor 'popularity' }}" title="Popular"><i class="mdi-action-dashboard"></i> Popular</a></li>
-    <li><a href="{{ pathFor 'listings' geog='all' geogId='all'}}"><i class="mdi-action-dashboard"></i> Listings</a></li>
+    <li><a href="{{ pathFor 'popularity' }}" title="Popular"><i class="mdi-action-thumb-up"></i> Popular</a></li>
+    <li><a href="{{ pathFor 'listings' geog='all' geogId='all'}}"><i class="mdi-action-view-headline"></i> Listings</a></li>
     <li><a href="{{ pathFor 'leaderboard' geog='all' geogId='all'}}"><i class="mdi-action-dashboard"></i> Leaderboard</a></li>
   </ul>
 

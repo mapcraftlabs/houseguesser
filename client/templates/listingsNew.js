@@ -38,12 +38,12 @@ AutoForm.hooks({
   	before: {
   	  insert: function(doc) {
   	  	if(!doc.link) {
-  	  		Materialize.toast("Enter a valid redfin link", 4000);
+  	  		Materialize.toast("Enter a valid redfin link", 4000, "red");
   	  	  return false;
   	  	}
   	  	var ret = parse_url(doc.link);
   	  	if(ret < 0) {
-  	  		Materialize.toast("Not a valid redfin link", 4000);
+  	  		Materialize.toast("Not a valid redfin link", 4000, "red");
   	  		return false;
   	  	}
   	  	doc = _.defaults(doc, ret);
@@ -57,7 +57,7 @@ AutoForm.hooks({
           error.reason.indexOf("Link already exists") != -1) {
 
         console.log(error);
-        Materialize.toast("Error creating listing");
+        Materialize.toast("Error creating listing", "red");
         return;
       }
 
@@ -66,7 +66,7 @@ AutoForm.hooks({
       Router.go('bids', {_id: $.trim(id)});
     },
     onSuccess: function (operation, result, template) {
-      Materialize.toast('Listing created successfully!', 4000);
+      Materialize.toast('Listing created successfully!', 4000, "green");
       Router.go('bids', {_id: result});
     }
   }
