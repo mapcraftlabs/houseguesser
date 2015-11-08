@@ -96,11 +96,28 @@ Bids.after.insert(function (userId, doc) {
 });
 
 
+var recountListings = function () {
+  ListingCounts.remove({});
+
+  var ls = Listings.find({}).fetch();
+
+  _.each(ls, function (l) {
+    ListingCounts.upsert({zip: l.zip}, {$inc: {numBids: 1}});
+    ListingCounts.upsert({city: l.city}, {$inc: {numBids: 1}});
+    ListingCounts.upsert({state: l.state}, {$inc: {numBids: 1}});
+  });
+};
+
+
 Meteor.startup(function() {
 
   console.log('indexingBids...');
   Leaderboard.updateAllListings();
-  console.log('doneIndexingBids...');
+  console.log('done IndexingBids...');
+
+  console.log('recountListings...');
+  recountListings();
+  console.log('done recountListings...');
 
   if (ServiceConfiguration.configurations.find(
     {service: 'google'}).count() == 0) {

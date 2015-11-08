@@ -8,11 +8,15 @@
     <h2>Universal Leaderboard</h2>
   {{/unless}}
 
-  <ul class="collection">
-    {{#each leaders}}
-      {{> leader }}
-    {{/each}}
-  </ul>
+  {{#if noLeaders}}
+    <h4>No leaders yet</h4>
+  {{else}}
+    <ul class="collection">
+      {{#each leaders}}
+        {{> leader }}
+      {{/each}}
+    </ul>
+  {{/if}}
 
   {{#unless allRoute}}
     <a href="{{pathFor 'listings' geog=geog geogId=geogId}}">{{geogId}} Listings</a>
