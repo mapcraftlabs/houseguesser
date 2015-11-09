@@ -1,11 +1,10 @@
 Template.user.helpers({
   userName: function () {
-  	console.log(Meteor.user());
-  	var u = Meteor.users.findOne(this.userId);
+  	var u = Meteor.users.findOne(Meteor.userId());
   	return u.profile.name;
   },
   profilePic: function () {
-  	var u = Meteor.users.findOne(this.createdBy);
+  	var u = Meteor.users.findOne(Meteor.userId());
   	return u.services.google.picture;
   },
   listingForBid: function () {

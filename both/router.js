@@ -5,7 +5,8 @@ Router.configure({
     return [
       // hypothetically this could cause some performance
       // problems for a user with lots of bids?
-      Meteor.subscribe('myBids')
+      Meteor.subscribe('myBids'),
+      Meteor.subscribe('userInfo')
     ]
   }
 });
@@ -26,11 +27,16 @@ Router.map(function () {
 
   this.route('/user', {
     name: 'user',
-    // don't need a waitOn cause the data is part of the
-    // global subscription above
+    waitOn: function() {
+      return [
+        this.subscribe('bidIndex', {userId: Meteor.userId()})
+      ]
+    },
     data: function () {
       return {
-        bids: Bids.find({createdBy: Meteor.userId()})
+        bids: Bids.find({createdBy: Meteor.userId()}),
+        boards: BidIndex.find({userId: Meteor.userId()},
+          {sort: {'scores.averagePctDiff': -1}})
       }
     },
     onAfterAction: function () {
@@ -65,6 +71,10 @@ Router.map(function () {
       var filt = {};
       if(p.geog != "all")
           filt[p.geog] = p.geogId;
+
+      // put this here just to get in all valid places
+      Session.set('geog', p.geog);
+      Session.set('geogId', p.geogId);
 
       return filt;
   }

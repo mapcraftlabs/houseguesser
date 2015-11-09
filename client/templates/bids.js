@@ -3,3 +3,10 @@ Template.bids.helpers({
   	return this.bids.count() == 0;
   }
 });
+
+
+Template.bids.events({
+  'click .go-back': function () {
+  	history.back();
+  }
+})
