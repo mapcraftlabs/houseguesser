@@ -1,6 +1,8 @@
 <template name="leaderboard">
 
-  <a class="btn-floating btn-large waves-effect waves-light right" href="{{pathFor 'popularity'}}"><i class="mdi-navigation-arrow-back"></i></a>
+  {{#if 0}}
+    <a class="btn-floating btn-large waves-effect waves-light right" href="{{pathFor 'popularity'}}"><i class="mdi-navigation-arrow-back"></i></a>
+  {{/if}}
 
   {{#unless allRoute}}
     <h2>{{geogId}} Leaderboard</h2>

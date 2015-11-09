@@ -6,7 +6,10 @@ Template.listing.helpers({
   	return this.numBids || 0;
   },
   listingPage: function () {
-  	return ActiveRoute.name('listings');
+  	return ActiveRoute.name('listings') || ActiveRoute.name('user');
+  },
+  hideGuessCount: function () {
+    return ActiveRoute.name('user');
   },
   sellAskDiff: function () {
     var diff = this.salesPrice - this.askingPrice;

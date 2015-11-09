@@ -24,6 +24,21 @@ Router.map(function () {
   });
 
 
+  this.route('/user', {
+    name: 'user',
+    // don't need a waitOn cause the data is part of the
+    // global subscription above
+    data: function () {
+      return {
+        bids: Bids.find({createdBy: Meteor.userId()})
+      }
+    },
+    onAfterAction: function () {
+      Meta.setTitle('User');
+    }
+  });
+
+
   this.route('/popularity', {
     name: 'popularity',
     waitOn: function() {
@@ -50,10 +65,6 @@ Router.map(function () {
       var filt = {};
       if(p.geog != "all")
           filt[p.geog] = p.geogId;
-
-      // put this here just to get in all valid places
-      Session.set('geog', p.geog);
-      Session.set('geogId', p.geogId);
 
       return filt;
   }

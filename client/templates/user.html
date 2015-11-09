@@ -1,0 +1,13 @@
+<template name="user">
+
+  <h2>My Guesses</h2>
+
+  <ul class="collection">
+		{{#each bids}}
+		  {{#with listingForBid}}
+		    {{> listing }}
+		  {{/with}}
+		{{/each}}
+  </ul>
+
+</template>
