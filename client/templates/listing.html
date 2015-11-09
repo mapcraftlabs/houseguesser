@@ -7,10 +7,26 @@
       <span class="title">{{ address}} - {{city}}, {{state}} {{zip}}</span>
     {{/if}}
 	  <p>	  	
-	    Ask: {{formatNumber askingPrice}}<br>
+      {{#unless salesPrice}}
+      Ask: {{formatNumber askingPrice}}
+      {{else}}
+      Sold: {{formatNumber salesPrice}} ({{sellAskDiff}})
+      {{/unless}}
 
-      {{#if salesPrice}}
-      Sold: {{formatNumber salesPrice}}<br>
+      <br>
+
+      {{#if userBid}}
+        Guess: {{formatNumber userBid.bid}} 
+        {{#if salesPrice}}
+          (<b>{{bidSellDiff}}</b>)
+        {{/if}}
+        <br>
+      {{else}}
+        {{#if listingPage}}
+          <a href="{{pathFor 'bids' _id}}">Click to guess</a><br>
+        {{else}}
+          <b>Guess below!</b><br>
+        {{/if}}
       {{/if}}
 
 	    {{#if listingPage}}

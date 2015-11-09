@@ -24,7 +24,7 @@ AutoForm.hooks({
       Materialize.toast('Can only bid once.', 4000, "red");
     },
     onSuccess: function (operation, result, template) {
-      toast('Bid submitted successfully!', 4000, "green");
+      Materialize.toast('Bid submitted successfully!', 4000, "green");
       Router.go('bids', {_id: Session.get('activeListingId')});
     }
   }

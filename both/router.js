@@ -1,6 +1,13 @@
 Router.configure({
   layoutTemplate: 'appLayout',
   loadingTemplate: 'loading',
+  waitOn: function() {
+    return [
+      // hypothetically this could cause some performance
+      // problems for a user with lots of bids?
+      Meteor.subscribe('myBids')
+    ]
+  }
 });
 
 Router.plugin('dataNotFound', {dataNotFoundTemplate: 'notFound'});

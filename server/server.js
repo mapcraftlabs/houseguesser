@@ -68,6 +68,22 @@ Meteor.publishComposite('bids', function(id) {
 });
 
 
+// publication to send back all the user's current bids
+// as well as the listings associated with them
+Meteor.publishComposite('myBids', function() {
+  return {
+    find: function() {
+      return Bids.find({createdBy: this.userId});
+    },
+    children: [{
+      find: function(bid) {
+        return Listings.find({_id: bid.listingId});
+      }
+    }]
+  }
+});
+
+
 Bids.allow({
   'insert': function(userId, doc) {
     var l = Bids.findOne({
@@ -110,7 +126,7 @@ var recountListings = function () {
 
 
 Meteor.startup(function() {
-
+  /*
   console.log('indexingBids...');
   Leaderboard.updateAllListings();
   console.log('done IndexingBids...');
@@ -118,7 +134,7 @@ Meteor.startup(function() {
   console.log('recountListings...');
   recountListings();
   console.log('done recountListings...');
-
+  */
   if (ServiceConfiguration.configurations.find(
     {service: 'google'}).count() == 0) {
 
@@ -132,4 +148,4 @@ Meteor.startup(function() {
 });
 
 
-Bids._ensureIndex({ listingId: 1 });
+Bids._ensureIndex({ listingId: 1, createdBy: 1 });

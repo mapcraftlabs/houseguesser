@@ -7,6 +7,32 @@ Template.listing.helpers({
   },
   listingPage: function () {
   	return ActiveRoute.name('listings');
+  },
+  sellAskDiff: function () {
+    var diff = this.salesPrice - this.askingPrice;
+    if(diff == 0) {
+      return 'Exactly ask';
+    } else if (diff > 0) {
+      return Math.round(diff/1000) + "k over ask";
+    } else {
+      return Math.round(-1 * diff/1000) + "k under ask";
+    }
+  },
+  bidSellDiff: function () {
+    var bid = Bids.findOne({listingId: this._id,
+      createdBy: Meteor.userId()});
+    var diff = bid.bid - this.salesPrice;
+    if(diff == 0) {
+      return 'Nailed it!';
+    } else if (diff > 0) {
+      return Math.round(diff/1000) + "k over";
+    } else {
+      return Math.round(-1 * diff/1000) + "k under";
+    }
+  },
+  userBid: function () {
+    return Bids.findOne({listingId: this._id,
+      createdBy: Meteor.userId()});
   }
 });
 
