@@ -5,7 +5,8 @@ Router.configure({
     return [
       // hypothetically this could cause some performance
       // problems for a user with lots of bids?
-      Meteor.subscribe('myBids')
+      Meteor.subscribe('myBids'),
+      Meteor.subscribe('userInfo')
     ]
   }
 });
@@ -20,6 +21,26 @@ Router.map(function () {
     name: 'home',
     onAfterAction: function () {
       Meta.setTitle('Home');
+    }
+  });
+
+
+  this.route('/user', {
+    name: 'user',
+    waitOn: function() {
+      return [
+        this.subscribe('bidIndex', {userId: Meteor.userId()})
+      ]
+    },
+    data: function () {
+      return {
+        bids: Bids.find({createdBy: Meteor.userId()}),
+        boards: BidIndex.find({userId: Meteor.userId()},
+          {sort: {'scores.averagePctDiff': -1}})
+      }
+    },
+    onAfterAction: function () {
+      Meta.setTitle('User');
     }
   });
 
@@ -93,7 +114,8 @@ Router.map(function () {
       return {
         geog: this.params.geog,
         geogId: this.params.geogId,
-        leaders: BidIndex.find(makeFilter(this.params))
+        leaders: BidIndex.find(makeFilter(this.params),
+          {sort: {'scores.averagePctDiff': -1}})
       }
     },
     onAfterAction: function () {

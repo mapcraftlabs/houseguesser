@@ -7,7 +7,8 @@ Template.leader.helpers({
   	var u = Meteor.users.findOne(this.userId);
   	return u.services.google.picture;
   },
-  allRoute: function () {
-	  return Template.parentData().geog == "all";
+  showGeog: function () {
+	  return Template.parentData().geog == "all" || 
+      ActiveRoute.name('user');
   }
 });

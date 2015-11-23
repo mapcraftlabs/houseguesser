@@ -1,39 +1,39 @@
 <template name="bids">
   <div>
     <div>
-  	<a class="btn-floating btn-large waves-effect waves-light right" href="{{pathFor 'listings' geog=geog geogId=geogId}}"><i class="mdi-navigation-arrow-back"></i></a>
+    	 <a class="btn-floating btn-large waves-effect waves-light right go-back" href="#"><i class="mdi-navigation-arrow-back"></i></a>
 
-  	<h2>Listing</h2>
+    	<h2>Listing</h2>
 
-		<ul class="collection">
-		  {{#with listing}}
-			  {{> listing }}
-		  {{/with}}
-	  </ul>
+  		<ul class="collection">
+  		  {{#with listing}}
+  			  {{> listing }}
+  		  {{/with}}
+  	  </ul>
     </div>
 
     <div>
-    {{#unless listing.salesPrice}}
-      {{#if currentUser}}
-  	    <a class="btn-floating btn-large waves-effect waves-light right" href="{{pathFor 'bid.new' _id=listing._id}}"><i class="mdi-content-add"></i></a>
-  	  {{/if}}
-    {{/unless}}
+      {{#unless listing.salesPrice}}
+        {{#if currentUser}}
+    	    <a class="btn-floating btn-large waves-effect waves-light right" href="{{pathFor 'bid.new' _id=listing._id}}"><i class="mdi-content-add"></i></a>
+    	  {{/if}}
+      {{/unless}}
 
-	  <h2>Guesses</h2>
+  	  <h2>Guesses</h2>
 
-    {{#if noBids}}
-      {{#if currentUser}}
-        This listing has no guesses.  Use the 'plus' to make a guess.
-      {{else}}
-         This listing has no guesses. Login to make a guess.      
+      {{#if noBids}}
+        {{#if currentUser}}
+          This listing has no guesses.  Use the 'plus' to make a guess.
+        {{else}}
+           This listing has no guesses. Login to make a guess.      
+        {{/if}}
+      {{else}}  
+        <ul class="collection">
+    	  {{#each bids}}
+    	    {{> bid }}
+    	  {{/each}}
+        </ul>
       {{/if}}
-    {{else}}  
-      <ul class="collection">
-  	  {{#each bids}}
-  	    {{> bid }}
-  	  {{/each}}
-      </ul>
-    {{/if}}
     </div>
 	
   </div>

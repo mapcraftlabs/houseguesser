@@ -13,6 +13,19 @@ Meteor.publish("listing", function(id) {
 });
 
 
+Meteor.publish("userInfo", function () {
+  return Meteor.users.find({
+    _id: this.userId
+  },{
+    limit: 1, 
+    fields: {
+      "profile.name": 1, 
+      "services.google.picture": 1 
+    } 
+  });
+})
+
+
 Listings.allow({
   'insert': function(userId, doc) {
     var l = Listings.findOne({link: doc.link});

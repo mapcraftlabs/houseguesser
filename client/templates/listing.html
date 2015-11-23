@@ -15,35 +15,39 @@
 
       <br>
 
-      {{#if userBid}}
-        Guess: {{formatNumber userBid.bid}} 
-        {{#if salesPrice}}
-          (<b>{{bidSellDiff}}</b>)
-        {{/if}}
-        <br>
-      {{else}}
-        {{#if listingPage}}
-          <a href="{{pathFor 'bids' _id}}">Click to guess</a><br>
+      {{#if currentUser}}
+        {{#if userBid}}
+          My Guess: {{formatNumber userBid.bid}} 
+          {{#if salesPrice}}
+            (<b>{{bidSellDiff}}</b>)
+          {{/if}}
+          <br>
         {{else}}
-          <b>Guess below!</b><br>
+          {{#if listingPage}}
+            <a href="{{pathFor 'bids' _id}}">Click to guess</a><br>
+          {{else}}
+            <b>Guess below!</b><br>
+          {{/if}}
         {{/if}}
       {{/if}}
 
-	    {{#if listingPage}}
-	      <a href="{{pathFor 'bids' _id}}">
-  	    {{#if oneBid}}
-  	      1 Guess
-  	    {{else}}
-  	      {{numBids}} Guesses
-  	    {{/if}}
-        </a>
-      {{else}}
-        {{#if oneBid}}
-          1 Guess
+      {{#unless hideGuessCount}}
+  	    {{#if listingPage}}
+  	      <a href="{{pathFor 'bids' _id}}">
+    	    {{#if oneBid}}
+    	      1 Guess
+    	    {{else}}
+    	      {{numBids}} Guesses
+    	    {{/if}}
+          </a>
         {{else}}
-          {{numBids}} Guesses
+          {{#if oneBid}}
+            1 Guess
+          {{else}}
+            {{numBids}} Guesses
+          {{/if}}
         {{/if}}
-      {{/if}}
+      {{/unless}}
 
 	  </p>
 	  {{#if listingPage}}
