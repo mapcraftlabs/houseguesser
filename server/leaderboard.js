@@ -76,10 +76,10 @@ Leaderboard = {
     geog_obj.userId = userId; 
     var h = BidIndex.findOne(geog_obj);
 
-    if(!h) {
+    var isNew = (h == null);
+    if(isNew) {
       h = geog_obj;
       h.bids = {};
-      BidIndex.insert(h);
     }
 
     if(!price) {
@@ -93,8 +93,13 @@ Leaderboard = {
 
     h.scores = Leaderboard.addScores(h.bids);
 
-    // update the object in mongo
-    BidIndex.update({_id: h._id}, h, true);
+    if(isNew) {
+      // insert a new object
+      BidIndex.insert(h);
+    } else {
+      // update the existing object
+      BidIndex.update({_id: h._id}, h, true);
+    }
   },
 
   addScores: function (bids) {

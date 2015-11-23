@@ -54,7 +54,7 @@ AutoForm.hooks({
     onError: function(operation, error) {
 
       if(!error.reason ||
-          error.reason.indexOf("Link already exists") != -1) {
+          error.reason.indexOf("Link already exists") == -1) {
 
         console.log(error);
         Materialize.toast("Error creating listing", "red");

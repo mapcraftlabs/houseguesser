@@ -114,7 +114,8 @@ Router.map(function () {
       return {
         geog: this.params.geog,
         geogId: this.params.geogId,
-        leaders: BidIndex.find(makeFilter(this.params))
+        leaders: BidIndex.find(makeFilter(this.params),
+          {sort: {'scores.averagePctDiff': -1}})
       }
     },
     onAfterAction: function () {
